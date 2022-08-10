@@ -1,0 +1,29 @@
+body {
+  position: absolute;top: 0;left: 0;bottom: 0;
+  margin: 0;
+  height:100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html,
+body,
+:global(#root) {
+  height: 100%;
+}
+:global(.ant-layout) {
+  min-height: 100%;
+}
+:global(.ant-table-tbody) {
+  background-color: #fff;
+}
+:global(.ant-calendar-picker) {
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

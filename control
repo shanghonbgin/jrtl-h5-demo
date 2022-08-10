@@ -1,0 +1,63 @@
+#!/bin/sh
+source /etc/profile
+cd "$(dirname $0)"/.. || exit 1
+echo "$(dirname $0)"
+PROC_NAME='jrtl-h5-demo'
+
+help(){
+    echo "${0} <start|stop|restart|status>"
+    exit 1
+}
+
+status(){
+    wcx=`ps -eo "command" | grep "\-\-title=$PROC_NAME"  | wc -l`
+    if [ $wcx == 1 ]; then
+       return 0
+    else
+      return 1
+    fi
+}
+
+start(){
+    DIRNAME=$PWD npm run ark
+}
+
+restart(){
+    DIRNAME=$PWD npm stop
+    if [ "$?" != "0" ]; then
+        echo "Service not started"
+    fi
+    DIRNAME=$PWD npm run ark
+}
+stop(){
+    DIRNAME=$PWD npm stop
+    if [ "$?" != "0" ]; then
+        echo "Service not started"
+    fi
+}
+
+
+list(){
+    ps -eo "pid,command" | grep $PROC_NAME
+}
+
+case "${1}" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status|health|checkhealth|st)
+        status
+        ;;
+    restart)
+        restart
+        ;;
+    list)
+        list
+        ;;
+    *)
+        help
+        ;;
+esac
